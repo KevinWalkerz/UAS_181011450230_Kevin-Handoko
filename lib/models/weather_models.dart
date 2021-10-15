@@ -9,7 +9,18 @@ class WeatherInfo {
     return WeatherInfo(icon: icon);
   }
 }
+/*
+class CountryInfo {
+  final String countryinfo;
 
+  CountryInfo({this.countryinfo});
+
+  factory CountryInfo.fromJson(Map<String, dynamic> json) {
+    final countryinfo = json['temp'];
+    return CountryInfo(countryinfo: countryinfo);
+  }
+}
+*/
 class TemperatureInfo {
   final double temperature;
 
@@ -23,17 +34,22 @@ class TemperatureInfo {
 
 class WeatherResponse {
   final String cityName;
+  //final CountryInfo countryInfo;
   final TemperatureInfo tempInfo;
   final WeatherInfo weatherInfo;
+
 
   String get iconUrl {
     return 'https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png';
   }
 
-  WeatherResponse({this.cityName, this.tempInfo, this.weatherInfo});
+  WeatherResponse({this.cityName,/*this.countyInfo,*/ this.tempInfo, this.weatherInfo});
 
   factory WeatherResponse.fromJson(Map<String, dynamic> json) {
     final cityName = json['name'];
+
+    /*final countryInfoJson = json['sys'];
+    final countryInfo = CountryInfo.fromJson(countryInfoJson);*/
 
     final tempInfoJson = json['main'];
     final tempInfo = TemperatureInfo.fromJson(tempInfoJson);
